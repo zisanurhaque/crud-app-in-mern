@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION==false npm install npm && run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION==false npm install npm && npm run build-production --verbose --prefix client"
   },
   "author": "",
   "license": "ISC",
