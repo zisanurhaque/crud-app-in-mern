@@ -67,8 +67,12 @@
     display: flex;
     border: none;
   }
-  th,
-  td {
+  table th{
+    padding: 8px 10px;
+    font-size: 14px;
+    position: relative;
+  }
+  table td {
     padding: 8px 10px;
     font-size: 14px;
     position: relative;
@@ -128,27 +132,64 @@
   .dl {
     width: 10%;
   }
-  
-  @media (max-width: 780px) {
+
+
+  @media (max-width: 1340px) {
     * {
-      width: 150%;
       float: left;
     }
     .home {
       padding: 0px;
     }
     .section {
-      width: 30%;
-      float: left;
-      height: 100%;
-      background: rgb(255, 255, 255);
-      border-radius: 3px;
+      width: 25%;
+      border-radius: 0px;
       box-shadow: none;
-      padding: 50px 20px;
+      padding: 20px;
       height: 100vh;
     }
     .user {
-      width: 70%;
+      width: 72%;
+      float: left;
+    }
+  }
+
+  
+  @media (max-width: 1000px) {
+    * {
+      float: left;
+      width: 160%;
+    }
+    .home {
+      padding: 0px;
+    }
+    .section {
+      width: 24.5%;
+      border-radius: 0px;
+      box-shadow: none;
+      padding: 20px;
       height: 100vh;
+    }
+    .user {
+      width: 72%;
+      float: left;
+    }
+    td.sr {
+      width: 3.1% !important;
+    }
+    td.st {
+      width: 15.7%;
+    }
+    td.em {
+      width: 18.7%;
+    }
+    td.dp {
+      width: 12.5%;
+    }
+    td.up {
+      width: 6.2%;
+    }
+    td.dl {
+      width: 6.3%;
     }
   }
