@@ -42,7 +42,7 @@ router.post("/add", async(req, res) => {
         await add.save()
         res.json({add})
     }catch(err){
-        req.send(err)
+        res.send(err)
     }
 })
 
