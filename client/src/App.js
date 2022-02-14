@@ -44,7 +44,7 @@ const App = () => {
     }else if(dept === ''){
       alert("Department Field Is Empty")
     }else{
-      axios.post('/add', value);
+      axios.post('https://crud-zisanurhaque.herokuapp.com//add', value);
       setName('')
       setEmail('')
       setDept('')
@@ -57,7 +57,7 @@ const App = () => {
   }
 
   const handleDelete = (id) => {
-    axios.delete(`/studetns/${id}`)
+    axios.delete(`https://crud-zisanurhaque.herokuapp.com//studetns/${id}`)
     setCalert('Student Deleted')
       setToggle(true)
       setTimeout(() => {
@@ -66,7 +66,7 @@ const App = () => {
   }
 
   const handleUpdate = async (id) => {
-    const res = await axios.get(`/single/${id}`)
+    const res = await axios.get(`https://crud-zisanurhaque.herokuapp.com//single/${id}`)
     setName(res.data.single.name)
     setEmail(res.data.single.email)
     setDept(res.data.single.dept)
@@ -81,7 +81,7 @@ const App = () => {
       email: email,
       dept: dept
     }
-    axios.put(`/update/${id}`, value)
+    axios.put(`https://crud-zisanurhaque.herokuapp.com//update/${id}`, value)
     
     setName('')
     setEmail('')
@@ -95,7 +95,7 @@ const App = () => {
   }
 
   useEffect(() => {
-      axios.get("/get").then(response => {
+      axios.get("https://crud-zisanurhaque.herokuapp.com//get").then(response => {
         return setStudents(response.data.students)
       })
   }, [students])
