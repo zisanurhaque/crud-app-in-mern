@@ -44,7 +44,7 @@ const App = () => {
     }else if(dept === ''){
       alert("Department Field Is Empty")
     }else{
-      axios.post('http://localhost:3001/add', value);
+      axios.post('/add', value);
       setName('')
       setEmail('')
       setDept('')
@@ -57,7 +57,7 @@ const App = () => {
   }
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/studetns/${id}`)
+    axios.delete(`/studetns/${id}`)
     setCalert('Student Deleted')
       setToggle(true)
       setTimeout(() => {
@@ -66,7 +66,7 @@ const App = () => {
   }
 
   const handleUpdate = async (id) => {
-    const res = await axios.get(`http://localhost:3001/single/${id}`)
+    const res = await axios.get(`/single/${id}`)
     setName(res.data.single.name)
     setEmail(res.data.single.email)
     setDept(res.data.single.dept)
@@ -81,7 +81,7 @@ const App = () => {
       email: email,
       dept: dept
     }
-    axios.put(`http://localhost:3001/update/${id}`, value)
+    axios.put(`/update/${id}`, value)
     
     setName('')
     setEmail('')
@@ -95,7 +95,7 @@ const App = () => {
   }
 
   useEffect(() => {
-      axios.get("http://localhost:3001/get").then(response => {
+      axios.get("/get").then(response => {
         return setStudents(response.data.students)
       })
   }, [students])
