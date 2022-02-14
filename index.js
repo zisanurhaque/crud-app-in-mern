@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv')
 const app = express();
+const path = require('path')
 
 dotenv.config({path: './config.env'})
 
@@ -68,9 +69,8 @@ const Port = process.env.PORT || 3001
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
-    const path = require('path')
     app.get("*", (req, res) => {
-        res.sendFile(path.resolved(__dirname, 'client', 'build', 'index.html'))
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 } 
 
