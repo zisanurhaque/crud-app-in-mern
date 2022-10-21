@@ -16,34 +16,46 @@ const App = () => {
   const [toggle, setToggle] = useState(false)
 
   const handleName = (e) => {
+    
     setName(e.target.value);
+
   }
 
   const handleEmail = (e) => {
+
     setEmail(e.target.value);
+
   }
   
   const handleDept = (e) => {
+
     setDept(e.target.value); 
+
   }
 
   const handleSubmit = (e) => {
+
     e.preventDefault()
+
     const value = {
       name: name,
       email: email,
       dept: dept
     }
+
     if(name === '' && email === '' && dept === ''){
       alert("All Field Is Empty")
     }
     else if(name === ''){
       alert("Name Field Is Empty")
-    }else if(email === ''){
+    }
+    else if(email === ''){
       alert("Email Field Is Empty")
-    }else if(dept === ''){
+    }
+    else if(dept === ''){
       alert("Department Field Is Empty")
-    }else{
+    }
+    else{
       axios.post('https://crud-zisanurhaque.herokuapp.com/add', value);
       setName('')
       setEmail('')
@@ -52,35 +64,45 @@ const App = () => {
       setToggle(true)
       setTimeout(() => {
         setToggle(false)
+        window.location.href="/"
       }, 2000)
     }
+
   }
 
   const handleDelete = (id) => {
+
     axios.delete(`https://crud-zisanurhaque.herokuapp.com/studetns/${id}`)
     setCalert('Student Deleted')
-      setToggle(true)
-      setTimeout(() => {
-        setToggle(false)
-      }, 2000)
+    setToggle(true)
+    setTimeout(() => {
+      setToggle(false)
+      window.location.href="/"
+    }, 2000)
+
   }
 
   const handleUpdate = async (id) => {
+
     const res = await axios.get(`https://crud-zisanurhaque.herokuapp.com/single/${id}`)
     setName(res.data.single.name)
     setEmail(res.data.single.email)
     setDept(res.data.single.dept)
     setId(id)
     setBtn(true)
+
   }
 
   const handleUpdateData = (e) => {
+
     e.preventDefault()
+
     const value = {
       name: name,
       email: email,
       dept: dept
     }
+
     axios.put(`https://crud-zisanurhaque.herokuapp.com/update/${id}`, value)
     
     setName('')
@@ -88,17 +110,20 @@ const App = () => {
     setDept('')
     setBtn(false)
     setCalert('Student Updated Successfully')
-      setToggle(true)
-      setTimeout(() => {
-        setToggle(false)
-      }, 2000)
+    setToggle(true)
+    setTimeout(() => {
+      setToggle(false)
+      window.location.href="/"
+    }, 2000)
   }
 
   useEffect(() => {
+
       axios.get("https://crud-zisanurhaque.herokuapp.com/get").then(response => {
         return setStudents(response.data.students)
       })
-  }, [students])
+
+  }, [])
   
   return (
     <div className='home'>
@@ -125,30 +150,30 @@ const App = () => {
         <div className='sectionHeader'>
           All Students
         </div>
-        <table>
-          <tr>
-            <th className='sr'>Sr</th>
-            <th className='st'>Student</th>
-            <th className='em'>Email</th>
-            <th className='dp'>Department</th>
-            <th className='up'>Update</th>
-            <th className='dl'>Delete</th>
-          </tr>
+        <div className='table'>
+          <div className='tr'>
+            <div className='th sr'>Sr</div>
+            <div className='th st'>Student</div>
+            <div className='th em'>Email</div>
+            <div className='th dp'>Department</div>
+            <div className='th up'>Update</div>
+            <div className='th dl'>Delete</div>
+          </div>
           <Scrollbars style={{ height: 240 }}>
           {
             students.map((item, index) => (
-              <tr key={item._id}>
-                <td className='sr'>{index + 1}</td>
-                <td className='st'>{item.name}</td>
-                <td className='em'>{item.email}</td>
-                <td className='dp'>{item.dept}</td>
-                <td className='up'><button className='update' onClick={() => handleUpdate(item._id)}>Update</button></td>
-                <td className='dl'><button className='delete' onClick={() => handleDelete(item._id)}>Delete</button></td>
-              </tr>
+              <div className='tr fortd' key={item._id}>
+                <div className='td sr'>{index + 1}</div>
+                <div className='td st'>{item.name}</div>
+                <div className='td em'>{item.email}</div>
+                <div className='td dp'>{item.dept}</div>
+                <div className='td up'><button className='update' onClick={() => handleUpdate(item._id)}>Update</button></div>
+                <div className='td dl'><button className='delete' onClick={() => handleDelete(item._id)}>Delete</button></div>
+              </div>
             ))
           }
           </Scrollbars>
-        </table>
+        </div>
       </div>
     </div>
   );
